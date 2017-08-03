@@ -1,0 +1,15 @@
+[Unit]
+Description=Kubernetes Kubelet
+Documentation=https://github.com/GoogleCloudPlatform/kubernetes
+After=docker.service
+Requires=docker.service
+
+[Service]
+ExecStart=/opt/bin/kubelet   --allow-privileged=true   --api-servers=http://172.17.8.101:8080   --address=0.0.0.0 --hostname_override=172.17.8.102 --cloud-provider=   --cluster-dns=10.200.0.15   --cluster-domain=cluster.local   --configure-cbr0=true   --container-runtime=docker   --docker=unix:///var/run/docker/libcontainerd/docker-containerd.sock   --network-plugin=kubenet   --kubeconfig=/opt/bin/kubeconfig   --reconcile-cidr=true   --serialize-image-pulls=false --port=10250   --v=2
+
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
+

@@ -1,0 +1,27 @@
+[Unit]
+Description=Kubernetes API Server
+Documentation=https://github.com/GoogleCloudPlatform/kubernetes
+
+[Service]
+ExecStart=/opt/bin/kube-apiserver \
+  --admission-control=NamespaceLifecycle,LimitRanger,SecurityContextDeny,ResourceQuota \
+  --advertise-address=172.17.8.101 \
+  --port=8080 \
+  --allow-privileged=true \
+  --apiserver-count=1 \
+  --authorization-mode=ABAC \
+  --authorization-policy-file=/etc/kubernetes/authorization-policy.jsonl \
+  --bind-address=0.0.0.0 \
+  --enable-swagger-ui=true \
+  --insecure-bind-address=0.0.0.0 \
+  --etcd-servers=http://172.17.8.101:2379 \
+  --service-cluster-ip-range=10.200.0.0/24 \
+  --service-node-port-range=30000-32767 \
+  --token-auth-file=/etc/kubernetes/token.csv \
+  --v=2
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
+

@@ -1,0 +1,308 @@
+curl -s https://discovery.etcd.io/new
+curl -s https://discovery.etcd.io/new?size=4
+export FLEETCTL_TUNNEL=127.0.0.1:2222
+etcdctl member list
+curl -O https://storage.googleapis.com/kubernetes-release/release/v1.5.2/bin/linux/amd64/kubectl
+https://en.ikoula.wiki/en/Deploy_a_cluster_Kubernetes_with_CoreOS
+fleetctl list-machines --full=true
+fleetctl list-machines
+
+
+service sync_gateway stop
+service sync_gateway start
+
+service couchbase-server start
+
+
+
+systemctl enable scheduler.service
+
+systemctl enable flannel.service  
+
+systemctl enable docker.service
+
+systemctl enable proxy.service
+
+systemctl enable kubelet.service
+
+
+
+
+
+
+ cat url 
+http://www.roblayton.com/2015/07/setting-up-coreos-cluster-with-fleet.html
+https://futurestud.io/tutorials/coreos-how-to-set-up-a-cluster
+https://coreos.com/etcd/docs/latest/v2/docker_guide.html
+
+
+https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-kubernetes-on-top-of-a-coreos-cluster
+https://coreos.com/kubernetes/docs/latest/deploy-master.html
+
+https://coreos.com/kubernetes/docs/latest/configure-kubectl.html
+curl -O https://storage.googleapis.com/kubernetes-release/release/v1.5.2/bin/linux/amd64/kubectl
+
+
+
+http://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_ubuntu-14.04_chef-provisionerless.box
+
+
+http://cloudtechologies.blogspot.in/2015/10/install-coreos-iso-on-vmware-workstation.html
+
+https://www.youtube.com/watch?v=yiWa0KFJDfI
+
+https://coreos.com/os/docs/latest/booting-on-openstack.html
+
+https://www.youtube.com/watch?v=9uDivcfCdUA
+
+wget https://github.com/kubernetes/kubernetes/releases/download/v1.0.3/kubernetes.tar.gz
+
+http://www.yongbok.net/blog/how-to-install-kubernetes-mesos-framework-on-ubuntu/
+
+https://sesblog.amazon.com/post/TxJE1JNZ6T9JXK/Handling-Bounces-and-Complaints
+
+https://www.youtube.com/watch?v=J45WlP_6u2Y
+https://kipotz1986.gitbooks.io/kubernetes-and-coreos-for-bare-metal-infrastructu/content/Getting-Started/lets_play.html
+
+
+
+
+curl -L https://github.com/docker/compose/releases/download/1.10.0-rc2/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
+
+chmod +x /usr/local/bin/docker-compose
+
+
+
+global@1234
+
+
+
+vagrant box add ubuntu-14.04 http://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_ubuntu-14.04_chef-provisionerless.box
+
+
+
+opscode_ubuntu-14.04
+
+#openssl passwd -1 > cloud-config-file
+#cloud-config
+
+
+ users:
+  - name: nik
+  - passwd: iis123
+    groups:
+     - sudo
+     - docker
+
+
+
+
+ #coreos-install -d /dev/sda -C stable -c cloud-config-file
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+mkdir -p /etc/kubernetes/ssl
+touch /etc/kubernetes/ssl/ca.pem
+touch /etc/kubernetes/ssl/apiserver.pem
+touch /etc/kubernetes/ssl/apiserver-key.pem
+chmod 600 /etc/kubernetes/ssl/*-key.pem
+chown root:root /etc/kubernetes/ssl/*-key.pem
+mkdir -p /etc/flannel
+touch /etc/flannel/options.env
+mkdir -p /etc/systemd/system/docker.service.d/
+touch    /etc/systemd/system/docker.service.d/10-flannel.conf
+mkdir -p /etc/kubernetes/cni/
+mkdir -p /etc/kubernetes/cni/net.d/
+mkdir -p  /etc/kubernetes/manifests
+touch /etc/kubernetes/manifests/kube-apiserver.yaml
+touch /etc/kubernetes/manifests/kube-proxy.yaml
+touch /etc/kubernetes/manifests/kube-controller-manager.yaml
+touch /etc/kubernetes/manifests/kube-scheduler.yaml
+mkdir -p /etc/systemd/system/etcd2.service.d/
+touch /etc/systemd/system/etcd2.service.d/40-listen-address.conf
+
+
+
+
+cat in.sh
+
+apt-get update
+
+apt-get install -y vim gcc curl wget git docker.io
+
+apt-get install -y golang-go
+
+http://blog.raintown.org/2014/11/logging-kubernetes-pods-using-fluentd.html
+http://eric-price.net/blog/centralized-logging-docker/
+http://blog.arungupta.me/docker-bridge-overlay-network-compose-variable-substitution/
+
+
+
+
+http://billcloud.me/configure-kubernetes-on-coreos--part-2/
+
+
+
+apt-get install apparmor
+
+apt-get install apt-transport-https ca-certificates
+
+wget -qO- https://get.docker.com/ | sh
+
+http://containertutorials.com/get_started_kubernetes/index.html
+
+http://kubernetes.io/docs/getting-started-guides/ubuntu/#prerequisites
+
+#export GOPATH="/usr/share/go/"
+
+
+http://rancher.com/running-a-mesos-cluster-on-rancheros/
+http://manfrix.blogspot.in/2015/11/mesoskubernetes-how-to-install-and-run.html
+
+https://devops.profitbricks.com/tutorials/getting-started-with-a-multi-node-kubernetes-cluster-on-ubuntu/
+
+http://container-solutions.com/continuous-delivery-with-docker-on-mesos-in-less-than-a-minute-part-2/
+
+http://trustmeiamadeveloper.com/2015/12/17/mesos-as-a-docker-containers-farm/
+
+
+
+
+https://medium.com/@gargar454/deploy-a-mesos-cluster-with-7-commands-using-docker-57951e020586#.8tkdtiv9p
+
+172.17.8.102
+
+kubelet
+
+--hostname_override=${COREOS_PRIVATE_IPV4} \
+--etcd_servers=http://172.17.8.101:4001 \
+--enable_server=true
+--v=0
+
+--etcd_servers=http://kube-master:4001 \
+--enable_server=true
+--v=0"
+
+
+
+proxy
+ExecStart=/opt/bin/kube-proxy -etcd_servers=http://172.17.8.101:4001  \
+--v=0
+
+
+
+
+openssl req -x509 -new -nodes -key ca-key.pem -days 10000 -out ca.pem -subj "/CN=kube-ca"
+
+
+export PATH=/opt/bin/bin:$PATH
+
+
+
+openssl genrsa -out ca-key.pem 2048
+
+
+
+unix:///var/run/docker/libcontainerd/docker-containerd.sock 
+
+openssl req -newkey rsa:2048 -nodes -keyout ca.key -out ca.csr
+
+
+
+
+openssl genrsa -out ca-key.pem 2048
+openssl req -x509 -new -nodes -key ca-key.pem -days 10000 -out ca.pem -subj "/CN=kube-ca"
+openssl x509 -inform DER -outform PEM -in ca.key -out ca.pem
+
+
+
+
+
+/opt/bin/kube-controller-manager --logtostderr --v=0 --master=http://172.17.8.101:8080
+
+
+/opt/bin/kube-controller-manager --port=10252 --master=http://127.0.0.1:8080 --node-monitor-grace-period=10s --node-monitor-period=5s --pod-eviction-timeout=10s
+
+
+openssl req -newkey rsa:2048 -nodes -keyout ca.key -x509 -days 365 -out ca.crt
+
+openssl genrsa -des3 -out ca.key 2048
+
+kubectl delete rc kube-dns-v20  --namespace=kube-system
+
+
+
+http://www.dasblinkenlichten.com/kubernetes-dns-config-on-bare-metal/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+     
+
+

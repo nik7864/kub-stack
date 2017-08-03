@@ -1,0 +1,19 @@
+kubectl get pods --all-namespaces
+kubectl create -f dns-service.yml
+kubectl get deployments --all-namespaces
+
+kubectl delete rc kube-dns-v20  --namespace=kube-system
+kubectl delete service kube-dns --namespace=kube-system
+
+kubectl get rc --all-namespaces
+
+kubectl delete rc kube-dns-v20  --namespace=kube-system
+
+kubectl get pods --namespace=kube-system -o wide 
+
+kubectl create -f addons/kube-ui/kube-ui-svc.yaml --namespace=kube-system
+
+
+kubectl run wordpress --image=tutum/wordpress --port=80 --hostport=81
+kubectl run wordpress --image=tutum/wordpress --port=80 --hostport=81
+
